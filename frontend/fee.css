@@ -1,0 +1,19 @@
+body {
+  text-align: center;
+}
+
+img {
+  width: 650px;
+}
+
+#home.btn {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  background: #004080;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
