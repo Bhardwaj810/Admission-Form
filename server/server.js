@@ -9,13 +9,11 @@ connectDB();
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "*", // your frontend URL
-    methods: ["GET", "POST"],
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: ["https://admission-form-theta-nine.vercel.app", "http://localhost:5500"],
+  methods: ["GET", "POST"],
+  credentials: true,
+}));
 app.use(express.json());
 
 app.use("/api/admission", admissionRoutes);
