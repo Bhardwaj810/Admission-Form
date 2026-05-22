@@ -1,36 +1,35 @@
 import mongoose from "mongoose";
 
-const admissionSchema = new mongoose.Schema(
-    {
-    student_name: {
+const contactSchema = new mongoose.Schema(
+  {
+    name: {
       type: String,
       required: true,
-    },
-    student_phone: {
-      type: String,
-      required: true,
-    },
-    state: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-    student_email: {
-      type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
       trim: true,
     },
-    course: {
+    email: {
       type: String,
       required: true,
+      trim: true,
+      lowercase: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    subject: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    message: {
+      type: String,
+      required: true,
+      trim: true,
     },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("Admission", admissionSchema);
+export default mongoose.model("Contact", contactSchema);

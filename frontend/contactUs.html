@@ -30,10 +30,12 @@
 
         <label for="phone">Mobile No:</label>
         <input
-          type="number"
+          type="tel"
           id="phone"
           name="phone"
           placeholder="Enter Your Mobile No."
+          pattern="[0-9]{10}"
+          maxlength="10"
           required
         />
 
@@ -60,5 +62,48 @@
     </div>
 
     <a href="index.html" id="home" class="btn">Back</a>
+    <script>
+      const contactForm = document.getElementById("contactForm");
+      const API_BASE_URL = "http://localhost:5000";
+
+      contactForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const phone = document.getElementById("phone").value.trim();
+        if (!/^\d{10}$/.test(phone)) {
+          alert("Please enter a valid 10-digit mobile number.");
+          return;
+        }
+
+        const payload = {
+          name: document.getElementById("name").value.trim(),
+          email: document.getElementById("email").value.trim(),
+          phone,
+          subject: document.getElementById("subject").value.trim(),
+          message: document.getElementById("message").value.trim(),
+        };
+
+        try {
+          const response = await fetch(`${API_BASE_URL}/api/contact/submit`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          const data = await response.json();
+          if (response.ok && data.success) {
+            alert("Contact request submitted successfully.");
+            contactForm.reset();
+          } else {
+            alert(data.message || "Error submitting contact request.");
+          }
+        } catch (error) {
+          console.error(error);
+          alert("Cannot connect to server. Please try again.");
+        }
+      });
+    </script>
   </body>
 </html>

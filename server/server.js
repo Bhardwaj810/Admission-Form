@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import admissionRoutes from "./routes/admissionRoutes.js"
+import contactRoutes from "./routes/contactRoutes.js";
 dotenv.config();
 connectDB();
 
@@ -18,6 +19,7 @@ app.use(
 app.use(express.json());
 
 app.use("/api/admission", admissionRoutes);
+app.use("/api/contact", contactRoutes);
 
 const PORT =  process.env.PORT || 5000;
 
